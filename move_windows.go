@@ -8,10 +8,10 @@ import (
 )
 
 var (
-	procCopyFile = kernel32.MustFindProc("CopyFileW")
+	procMoveFile = kernel32.MustFindProc("MoveFileW")
 )
 
-func CopyFile(dst, src string) error {
+func MoveFile(dst, src string) error {
 	psrc, err := syscall.UTF16PtrFromString(src)
 	if err != nil {
 		return err
@@ -20,7 +20,7 @@ func CopyFile(dst, src string) error {
 	if err != nil {
 		return err
 	}
-	r, _, err := procCopyFile.Call(uintptr(unsafe.Pointer(psrc)), uintptr(unsafe.Pointer(pdst)), uintptr(0))
+	r, _, err := procMoveFile.Call(uintptr(unsafe.Pointer(psrc)), uintptr(unsafe.Pointer(pdst)), uintptr(0))
 	if r == 0 {
 		return err
 	}
