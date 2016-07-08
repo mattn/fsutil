@@ -1,4 +1,4 @@
-# copyfile
+# fsutil
 
 Filesystem Utility. Currently just provide CopyFile.
 
