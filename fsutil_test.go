@@ -46,4 +46,9 @@ func TestCopyFile(t *testing.T) {
 	if ff.Mode() != tf.Mode() {
 		t.Fatalf("the file both should have same mode: from %v to %v", ff.Mode(), tf.Mode())
 	}
+
+	b, err := ioutil.ReadFile(to)
+	if string(b) != "Hello, World" {
+		t.Fatalf("the file both should have same content but: %v", string(b))
+	}
 }
